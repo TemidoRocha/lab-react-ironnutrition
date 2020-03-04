@@ -14,9 +14,8 @@ class App extends Component {
       name: 'name',
       calories: 0,
       image: 'url',
-      quantity: 0,
-      query: '', //for the search menu
-      contentOfNewTask: ''
+      quantity: 10,
+      query: '' //for the search menu
     };
     this.preventDefault = this.preventDefault.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -28,12 +27,14 @@ class App extends Component {
   preventDefault(event) {
     //this wil be to addquantity  each meal
     event.preventDefault();
-    console.log('refresh prevented');
+
+    this.setState({
+      query: ''
+    });
   }
 
   handleInputChange(event) {
     event.preventDefault();
-    // console.log(event.target.value);
     this.setState({ [event.target.name]: event.target.value });
   }
 
@@ -60,9 +61,6 @@ class App extends Component {
     const filteredMeals = this.state.meals.filter(meal => {
       return meal.name.toLowerCase().includes(this.state.query.toLowerCase());
     });
-    this.setState({
-      contentOfNewTask: ''
-    });
     return filteredMeals;
   }
 
@@ -78,7 +76,7 @@ class App extends Component {
             placeholder="search for anything..."
             onChange={this.handleInputChange}
           />
-          <button>Search</button>
+          <button>New Search</button>
         </form>
         {/* toggle addMealMenu */}
         <button onClick={this.addMealMenu}>Add Meal Menu</button>
@@ -109,14 +107,12 @@ class App extends Component {
         {/* add meal component */}
         <MealsComponent
           // key={JSON.stringify(Date.now())}
-
           meals={this.filteredMeals}
           // meals={this.state.meals}
           quantity={this.state.quantity}
           submitFood={event => this.submitFood(event)}
           handleInputChange={event => this.handleInputChange(event)}
         />
-        ))
       </div>
     );
   }

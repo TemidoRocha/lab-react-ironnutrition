@@ -14,12 +14,15 @@ class MealsComponent extends Component {
           <h5 className="mt-0 mb-1">{meal.name}</h5>
           <small>{meal.calories}</small>
         </div>
-        <form className="row align-self-center" onSubmit={event => meal.submitFood(event)}>
+        <form
+          className="row align-self-center"
+          onSubmit={() => this.props.submitFood(this.props.event)}
+        >
           <input
             className="form-control col-9"
             type="number"
-            name={meal.name}
-            onChange={event => this.props.handleInputChange(event)}
+            name="quantity"
+            onChange={() => this.props.handleInputChange(this.props.event)}
             value={this.props.quantity}
           />
           <button className="btn btn-primary col-3">+</button>
