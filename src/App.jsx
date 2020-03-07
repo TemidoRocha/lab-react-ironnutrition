@@ -101,7 +101,7 @@ class App extends Component {
             <button onClick={this.addNewMeal}>Add New Meal</button>
           </form>
         )}
-        <MealsComponent meals={this.filteredMeals} totalMeals={this.state.meals}onXClick={this.handleSubmit} />
+        <MealsComponent meals={this.filteredMeals} totalMeals={this.state.meals} />
       </div>
     );
   }
