@@ -9,19 +9,17 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      meals: meals,
-      addMealMenu: false,
-      name: 'name',
-      calories: 0,
-      image: 'url',
-      quantity: 10,
+      meals: meals, //melas data
+      addMealMenu: false, //for adding new meals to the meals data
+      name: 'name', //for adding new meals name
+      calories: 0, //for adding new meals calories
+      image: 'url', //for adding new meals picture
       query: '' //for the search menu
     };
     this.preventDefault = this.preventDefault.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.addNewMeal = this.addNewMeal.bind(this);
     this.addMealMenu = this.addMealMenu.bind(this);
-    // this.filteredMeals = this.filteredMeals.bind(this);
   }
 
   preventDefault(event) {
@@ -43,8 +41,7 @@ class App extends Component {
     const newMeal = {
       name: this.state.name,
       calories: this.state.calories,
-      image: this.state.image,
-      quantity: 10
+      image: this.state.image
     };
     this.setState({
       meals: [...this.state.meals, newMeal]
@@ -104,15 +101,7 @@ class App extends Component {
             <button onClick={this.addNewMeal}>Add New Meal</button>
           </form>
         )}
-        {/* add meal component */}
-        <MealsComponent
-          // key={JSON.stringify(Date.now())}
-          meals={this.filteredMeals}
-          // meals={this.state.meals}
-          quantity={this.state.quantity}
-          submitFood={event => this.submitFood(event)}
-          handleInputChange={event => this.handleInputChange(event)}
-        />
+        <MealsComponent meals={this.filteredMeals} totalMeals={this.state.meals}onXClick={this.handleSubmit} />
       </div>
     );
   }
